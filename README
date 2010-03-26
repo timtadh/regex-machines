@@ -1,0 +1,10 @@
+Regular Expression Processing Virtual Machines
+
+Implementations, Google Go, of several different approaches to process regular 
+expressions. These are based on Russ Cox's excellent article on the same 
+subject. [1] The implementations are designed for learning and are being written
+as teaching aids for a lecture I am giving at Case Western Reserve University's
+Hacker Society.
+
+[1] http://swtch.com/~rsc/regexp/regexp2.html
+
