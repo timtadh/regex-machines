@@ -42,6 +42,7 @@ func (self Inst) String() (s string) {
 func (self InstSlice) String() (s string) {
     s = "{\n"
     for i, inst := range self {
+        if inst == nil { continue }
         s += fmt.Sprintf("    %v %v\n", i, inst)
     }
     s += "}"
