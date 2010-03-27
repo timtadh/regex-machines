@@ -28,11 +28,11 @@ func New(op uint8, x, y uint32) *Inst {
 func (self Inst) String() (s string) {
     switch self.Op {
         case CHAR:
-            s = fmt.Sprintf("CHAR %c", byte(self.X))
+            s = fmt.Sprintf("CHAR   %c", byte(self.X))
         case SPLIT:
-            s = fmt.Sprintf("SPLIT %v, %v", self.X, self.Y)
+            s = fmt.Sprintf("SPLIT  %v, %v", self.X, self.Y)
         case JMP:
-            s = fmt.Sprintf("JMP %v", self.X)
+            s = fmt.Sprintf("JMP    %v", self.X)
         case MATCH:
             s = "MATCH"
     }
@@ -43,7 +43,11 @@ func (self InstSlice) String() (s string) {
     s = "{\n"
     for i, inst := range self {
         if inst == nil { continue }
-        s += fmt.Sprintf("    %v %v\n", i, inst)
+        if i < 10 {
+            s += fmt.Sprintf("    0%v %v\n", i, inst)
+        } else {
+            s += fmt.Sprintf("    %v %v\n", i, inst)
+        }
     }
     s += "}"
     return

@@ -3,10 +3,7 @@ package machines
 import "testing"
 import "inst"
 
-var text []byte = []byte{'a', 'b', 'a', 'c', 'b', 'a', 'c', 'b', 'b'}
-// var text []byte = []byte{'a', 'b', 'a'}
-
-func TestMatch(t *testing.T) {
+func TestRecursiveMatch(t *testing.T) {
     //. (a|b)*cba?(c|b)bb
     program := make(inst.InstSlice, 20)
 
@@ -35,7 +32,7 @@ func TestMatch(t *testing.T) {
     }
 }
 
-func TestNoMatch(t *testing.T) {
+func TestRecursiveNoMatch(t *testing.T) {
     //. (a|b)*cba?(c|b)bb
     program := make(inst.InstSlice, 20)
 
