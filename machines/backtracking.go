@@ -20,7 +20,6 @@ func Backtracking(program InstSlice, text []byte) bool {
                     }
                     thread.Pc++
                     thread.Tc++
-                    continue
                 case MATCH:
                     if thread.Tc == uint32(len(text)) {
                         return true
@@ -31,7 +30,6 @@ func Backtracking(program InstSlice, text []byte) bool {
                 case SPLIT:
                     stack.Push(NewThread(inst.Y, thread.Tc))
                     thread.Pc = inst.X
-                    continue
             }
         }
     }
