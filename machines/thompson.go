@@ -27,9 +27,7 @@ func Thompson(program InstSlice, text []byte) bool {
                     break
             }
         }
-        tmp := cqueue
-        cqueue = nqueue
-        nqueue = tmp
+        cqueue, nqueue = nqueue, cqueue
     }
     return false
 }
