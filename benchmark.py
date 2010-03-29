@@ -28,49 +28,6 @@ for line in sys.stdin.readlines():
         py.append(test(f[0]))
     t.append(f[3])
 
-
-#x_axis1 = list()
-#y_axis1 = list()
-#for i in range(1, 30):
-    #x_axis1.append(i)
-    #y_axis1.append(testclp(i))
-
-#x_axis2 = list()
-#y_axis2 = list()
-#for i in range(1, 20):
-    #x_axis2.append(i)
-    #y_axis2.append(testpyclp(i))
-
-#x_axis1 = list()
-#y_axis1 = list()
-#for i in range(2, 7):
-    #x_axis1.append(i)
-    #y_axis1.append(testclp(i))
-    ##print i
-
-#x_axis2 = list()
-#y_axis2 = list()
-#for i in range(2, 7):
-    #x_axis2.append(i)
-    #y_axis2.append(testpyclp(i))
-    ##print i
-
-
-#x_axis1 = list()
-#y_axis1 = list()
-#for i in range(2, 6):
-    #x_axis1.append(i)
-    #y_axis1.append(testbest(i))
-    #print i
-
-#x_axis2 = list()
-#y_axis2 = list()
-#for i in range(2, 6):
-    #x_axis2.append(i)
-    #y_axis2.append(testpybest(i))
-    #print i
-
-##p.title('CDF of Wget Ratios')
 p.plot(x[:20], r, 'r-')
 p.plot(x[:20], b, 'b-')
 p.plot(x[:22], py, 'k-')
