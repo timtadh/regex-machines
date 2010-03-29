@@ -27,11 +27,11 @@ func NewStack() *Stack {
 func (self *Stack) Empty() bool { return self.list.Len() <= 0 }
 
 func (self *Stack) Push(t *Thread) {
-    self.list.PushBack(t)
+    self.list.PushFront(t)
 }
 
 func (self *Stack) Pop() *Thread {
-    e := self.list.Back()
+    e := self.list.Front()
     t, _ := e.Value.(*Thread)
     self.list.Remove(e)
     return t

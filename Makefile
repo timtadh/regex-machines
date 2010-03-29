@@ -12,6 +12,6 @@ test: _buildtest _runtest clean
 .PHONY : clean
 clean :
 	-find . -name "*.6" | xargs -I"%s" rm %s
-	-rm _testmain *.6 2> /dev/null
+	-rm time _testmain *.6 2> /dev/null
 	ls
 

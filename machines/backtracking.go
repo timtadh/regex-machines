@@ -13,7 +13,7 @@ func Backtracking(program InstSlice, text []byte) bool {
         inner: for {
             if int(thread.Pc) >= len(program) || int(thread.Tc) > len(text) { return false }
             inst := program[thread.Pc]
-            switch program[thread.Pc].Op {
+            switch inst.Op {
                 case CHAR:
                     if int(thread.Tc) >= len(text) || text[thread.Tc] != byte(inst.X) {
                         break inner

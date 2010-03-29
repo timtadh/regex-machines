@@ -13,7 +13,7 @@ func recursive(program inst.InstSlice, text []byte, pc, tc uint32) bool {
             }
             return false
         case inst.CHAR:
-            if text[tc] != byte(program[pc].X) || tc == uint32(len(text)) {
+            if tc == uint32(len(text)) || text[tc] != byte(program[pc].X) {
                 return false
             }
             return recursive(program, text, pc+1, tc+1)
