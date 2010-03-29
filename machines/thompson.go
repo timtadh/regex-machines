@@ -14,17 +14,13 @@ func Thompson(program InstSlice, text []byte) bool {
                 case CHAR:
                     if int(tc) >= len(text) || text[tc] != byte(inst.X) { break }
                     nqueue.Push(pc+1)
-                    break
                 case MATCH:
                     if tc == len(text) { return true }
-                    break
                 case JMP:
                     cqueue.Push(inst.X)
-                    break
                 case SPLIT:
                     cqueue.Push(inst.X)
                     cqueue.Push(inst.Y)
-                    break
             }
         }
         cqueue, nqueue = nqueue, cqueue
