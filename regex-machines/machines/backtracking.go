@@ -1,7 +1,7 @@
 package machines
 
-import . "inst"
-import . "thread"
+import . "regex-machines/inst"
+import . "regex-machines/thread"
 
 func Backtracking(program InstSlice, text []byte) bool {
     var stack *Stack = NewStack()

@@ -1,6 +1,6 @@
 package machines
 
-import "inst"
+import "regex-machines/inst"
 
 func recursive(program inst.InstSlice, text []byte, pc, tc uint32) bool {
     if int(pc) >= len(program) || int(tc) > len(text) {

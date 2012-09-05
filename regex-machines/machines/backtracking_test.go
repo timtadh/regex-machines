@@ -1,7 +1,7 @@
 package machines
 
 import "testing"
-import "inst"
+import "regex-machines/inst"
 
 // var text []byte = []byte{'a', 'b', 'a'}
 

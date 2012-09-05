@@ -1,7 +1,7 @@
 package machines
 
 import "testing"
-import "inst"
+import "regex-machines/inst"
 
 func TestRecursiveMatch(t *testing.T) {
     //. (a|b)*cba?(c|b)bb
