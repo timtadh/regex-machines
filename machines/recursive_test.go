@@ -1,11 +1,9 @@
 package machines
 
 import "testing"
-import "regex-machines/inst"
+import "github.com/timtadh/regex-machines/inst"
 
-// var text []byte = []byte{'a', 'b', 'a'}
-
-func TestThompsonMatch(t *testing.T) {
+func TestRecursiveMatch(t *testing.T) {
     //. (a|b)*cba?(c|b)bb
     program := make(inst.InstSlice, 20)
 
@@ -29,12 +27,12 @@ func TestThompsonMatch(t *testing.T) {
 
     t.Log(string(text))
     t.Log(program)
-    if !Thompson(program, text) {
+    if !Recursive(program, text) {
         t.Error("program should have matched text but did not")
     }
 }
 
-func TestThompsonNoMatch(t *testing.T) {
+func TestRecursiveNoMatch(t *testing.T) {
     //. (a|b)*cba?(c|b)bb
     program := make(inst.InstSlice, 20)
 
@@ -57,7 +55,7 @@ func TestThompsonNoMatch(t *testing.T) {
 
     t.Log(string(text))
     t.Log(program)
-    if Thompson(program, text) {
+    if Recursive(program, text) {
         t.Error("program should not have matched text but did")
     }
 }

@@ -3,8 +3,8 @@ package main
 import "fmt"
 import timelib "time"
 import "math"
-import "regex-machines/inst"
-import . "regex-machines/machines"
+import "github.com/timtadh/regex-machines/inst"
+import . "github.com/timtadh/regex-machines/machines"
 
 func test_case(n int) (inst.InstSlice, []byte) {
     program := make(inst.InstSlice, n*3+1)

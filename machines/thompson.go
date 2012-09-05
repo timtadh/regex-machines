@@ -1,7 +1,7 @@
 package machines
 
-import . "inst"
-import "regex-machines/queue"
+import . "github.com/timtadh/regex-machines/inst"
+import "github.com/timtadh/regex-machines/queue"
 
 func Thompson(program InstSlice, text []byte) bool {
     var cqueue, nqueue *queue.Queue = queue.New(), queue.New()
