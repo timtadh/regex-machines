@@ -20,7 +20,7 @@ func (self *Queue) Push(pc uint32) {
     if _, ok := self.set[pc]; ok {
         return
     }
-    self.set[pc] = true, true
+    self.set[pc] = true
     self.list.PushBack(pc)
 }
 
@@ -28,7 +28,7 @@ func (self *Queue) Pop() uint32 {
     e := self.list.Front()
     pc, _ := e.Value.(uint32)
     self.list.Remove(e)
-    self.set[pc] = false, false
+		delete(self.set, pc)
     return pc
 }
 

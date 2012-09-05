@@ -1,7 +1,7 @@
 package main
 
 import "fmt"
-import "os"
+import timelib "time"
 import "math"
 import "inst"
 import . "machines"
@@ -25,7 +25,9 @@ func test_case(n int) (inst.InstSlice, []byte) {
 }
 
 func time() float64 {
-    sec, nsec, _ := os.Time()
+    t := timelib.Now()
+    sec := t.Unix()
+    nsec := t.UnixNano()
     return float64(sec) + float64(nsec)*math.Pow(10.0, -9)
 }
 
