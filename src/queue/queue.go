@@ -3,21 +3,23 @@ package queue
 import "container/list"
 
 type Queue struct {
-    list    *list.List
-    set     map[uint32] bool
+    list *list.List
+    set  map[uint32]bool
 }
 
 func New() *Queue {
     self := new(Queue)
     self.list = list.New()
-    self.set = make(map[uint32] bool)
+    self.set = make(map[uint32]bool)
     return self
 }
 
 func (self *Queue) Empty() bool { return self.list.Len() <= 0 }
 
 func (self *Queue) Push(pc uint32) {
-    if _, ok := self.set[pc]; ok { return }
+    if _, ok := self.set[pc]; ok {
+        return
+    }
     self.set[pc] = true, true
     self.list.PushBack(pc)
 }

@@ -11,7 +11,7 @@ func test_case(n int) (inst.InstSlice, []byte) {
     text := make([]byte, n)
     i := uint32(0)
     for j := 0; j < n; j++ {
-        program[i]   = inst.New(inst.SPLIT, i+1, i+2)
+        program[i] = inst.New(inst.SPLIT, i+1, i+2)
         program[i+1] = inst.New(inst.CHAR, 'a', 0)
         i += 2
     }
@@ -30,7 +30,7 @@ func time() float64 {
 }
 
 func main() {
-//     fmt.Println("test, recursive, backtracking, thompson")
+    //     fmt.Println("test, recursive, backtracking, thompson")
     for i := 1; i <= 50; i++ {
         program, text := test_case(i)
         var t1, t2, t3 float64
@@ -39,13 +39,13 @@ func main() {
                 s := time()
                 Recursive(program, text)
                 e := time()
-                t1 = e-s
+                t1 = e - s
             }
             {
                 s := time()
                 Backtracking(program, text)
                 e := time()
-                t2 = e-s
+                t2 = e - s
             }
         } else {
             t1 = 0.0
@@ -55,7 +55,7 @@ func main() {
             s := time()
             Thompson(program, text)
             e := time()
-            t3 = e-s
+            t3 = e - s
         }
         fmt.Printf("%v, %f, %f, %f\n", i, t1, t2, t3)
     }

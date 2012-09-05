@@ -3,8 +3,8 @@ package thread
 import "container/list"
 
 type Thread struct {
-    Pc uint32
-    Tc uint32
+    Pc  uint32
+    Tc  uint32
 }
 
 func NewThread(pc, tc uint32) *Thread {

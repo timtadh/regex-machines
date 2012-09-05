@@ -11,16 +11,20 @@ func Thompson(program InstSlice, text []byte) bool {
             pc := cqueue.Pop()
             inst := program[pc]
             switch inst.Op {
-                case CHAR:
-                    if int(tc) >= len(text) || text[tc] != byte(inst.X) { break }
-                    nqueue.Push(pc+1)
-                case MATCH:
-                    if tc == len(text) { return true }
-                case JMP:
-                    cqueue.Push(inst.X)
-                case SPLIT:
-                    cqueue.Push(inst.X)
-                    cqueue.Push(inst.Y)
+            case CHAR:
+                if int(tc) >= len(text) || text[tc] != byte(inst.X) {
+                    break
+                }
+                nqueue.Push(pc + 1)
+            case MATCH:
+                if tc == len(text) {
+                    return true
+                }
+            case JMP:
+                cqueue.Push(inst.X)
+            case SPLIT:
+                cqueue.Push(inst.X)
+                cqueue.Push(inst.Y)
             }
         }
         cqueue, nqueue = nqueue, cqueue

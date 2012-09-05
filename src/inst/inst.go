@@ -3,7 +3,7 @@ package inst
 import "fmt"
 
 const (
-    CHAR    = iota
+    CHAR = iota
     SPLIT
     JMP
     MATCH
@@ -27,14 +27,14 @@ func New(op uint8, x, y uint32) *Inst {
 
 func (self Inst) String() (s string) {
     switch self.Op {
-        case CHAR:
-            s = fmt.Sprintf("CHAR   %c", byte(self.X))
-        case SPLIT:
-            s = fmt.Sprintf("SPLIT  %v, %v", self.X, self.Y)
-        case JMP:
-            s = fmt.Sprintf("JMP    %v", self.X)
-        case MATCH:
-            s = "MATCH"
+    case CHAR:
+        s = fmt.Sprintf("CHAR   %c", byte(self.X))
+    case SPLIT:
+        s = fmt.Sprintf("SPLIT  %v, %v", self.X, self.Y)
+    case JMP:
+        s = fmt.Sprintf("JMP    %v", self.X)
+    case MATCH:
+        s = "MATCH"
     }
     return
 }
@@ -42,7 +42,9 @@ func (self Inst) String() (s string) {
 func (self InstSlice) String() (s string) {
     s = "{\n"
     for i, inst := range self {
-        if inst == nil { continue }
+        if inst == nil {
+            continue
+        }
         if i < 10 {
             s += fmt.Sprintf("    0%v %v\n", i, inst)
         } else {

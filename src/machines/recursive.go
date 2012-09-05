@@ -7,23 +7,23 @@ func recursive(program inst.InstSlice, text []byte, pc, tc uint32) bool {
         return false
     }
     switch program[pc].Op {
-        case inst.MATCH:
-            if tc == uint32(len(text)) {
-                return true
-            }
+    case inst.MATCH:
+        if tc == uint32(len(text)) {
+            return true
+        }
+        return false
+    case inst.CHAR:
+        if tc == uint32(len(text)) || text[tc] != byte(program[pc].X) {
             return false
-        case inst.CHAR:
-            if tc == uint32(len(text)) || text[tc] != byte(program[pc].X) {
-                return false
-            }
-            return recursive(program, text, pc+1, tc+1)
-        case inst.JMP:
-            return recursive(program, text, program[pc].X, tc)
-        case inst.SPLIT:
-            if recursive(program, text, program[pc].X, tc) {
-                return true
-            }
-            return recursive(program, text, program[pc].Y, tc)
+        }
+        return recursive(program, text, pc+1, tc+1)
+    case inst.JMP:
+        return recursive(program, text, program[pc].X, tc)
+    case inst.SPLIT:
+        if recursive(program, text, program[pc].X, tc) {
+            return true
+        }
+        return recursive(program, text, program[pc].Y, tc)
     }
     return false
 }
