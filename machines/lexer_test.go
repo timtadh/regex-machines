@@ -1,6 +1,5 @@
 package machines
 
-import "fmt"
 import "testing"
 import "github.com/timtadh/regex-machines/inst"
 
@@ -31,7 +30,7 @@ func TestLexerMatch(t *testing.T) {
     t.Log(string(text))
 		t.Log(len(text))
     t.Log(program)
-		success, matches := Lexer(program, text)
+		success, matches := LexerEngine(program, text)
 		go func() {
 				for match := range matches {
 						t.Log(match)
@@ -63,11 +62,10 @@ func TestLexerNoMatch(t *testing.T) {
     program[13] = inst.New(inst.CHAR, 'b', 0)
     program[14] = inst.New(inst.MATCH, 0, 0)
 
-		fmt.Println("testing...")
 		t.Log("(a|b)*cba?(c|b)")
     t.Log(string(text))
     t.Log(program)
-		success, matches := Lexer(program, text)
+		success, matches := LexerEngine(program, text)
 		go func() {
 				for match := range matches {
 						t.Log(match)
@@ -102,7 +100,7 @@ func TestLexerThreeStrings(t *testing.T) {
     t.Log(string(text))
 		t.Log(len(text))
     t.Log(program)
-		success, matches := Lexer(program, text)
+		success, matches := LexerEngine(program, text)
 		go func() {
 				for match := range matches {
 						t.Log(match)
