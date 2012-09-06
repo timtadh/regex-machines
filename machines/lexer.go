@@ -18,7 +18,7 @@ func LexerEngine(program InstSlice, text []byte) (chan bool, chan Match) {
     success := make(chan bool)
     go func() {
         var cqueue, nqueue *queue.Queue = queue.New(), queue.New()
-        match := -1
+        match_pc := -1
         match_tc := -1
         start_tc := 0
         cqueue.Push(0)
@@ -26,19 +26,17 @@ func LexerEngine(program InstSlice, text []byte) (chan bool, chan Match) {
             for !cqueue.Empty() {
                 pc := cqueue.Pop()
                 inst := program[pc]
-                // fmt.Printf("%v tc=%v\n", inst, tc)
                 switch inst.Op {
                 case CHAR:
-                    if int(tc) >= len(text) || text[tc] != byte(inst.X) {
-                        break
+                    if int(tc) < len(text) && text[tc] == byte(inst.X) {
+                        nqueue.Push(pc + 1)
                     }
-                    nqueue.Push(pc + 1)
                 case MATCH:
                     if match_tc < tc {
-                        match = int(pc)
+                        match_pc = int(pc)
                         match_tc = tc
-                    } else if match > int(pc) {
-                        match = int(pc)
+                    } else if match_pc > int(pc) {
+                        match_pc = int(pc)
                         match_tc = tc
                     }
                 case JMP:
@@ -49,11 +47,11 @@ func LexerEngine(program InstSlice, text []byte) (chan bool, chan Match) {
                 }
             }
             cqueue, nqueue = nqueue, cqueue
-            if cqueue.Empty() && match != -1 {
-                matches <- Match{text[start_tc:match_tc], match}
-                match = -1
+            if cqueue.Empty() && match_pc != -1 {
+                matches <- Match{text[start_tc:match_tc], match_pc}
                 cqueue.Push(0)
                 start_tc = tc
+                match_pc = -1
                 tc -= 1
             }
         }
@@ -67,3 +65,4 @@ func LexerEngine(program InstSlice, text []byte) (chan bool, chan Match) {
     }()
     return success, matches
 }
+

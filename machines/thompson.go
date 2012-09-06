@@ -12,10 +12,9 @@ func Thompson(program InstSlice, text []byte) bool {
             inst := program[pc]
             switch inst.Op {
             case CHAR:
-                if int(tc) >= len(text) || text[tc] != byte(inst.X) {
-                    break
+                if int(tc) < len(text) && text[tc] == byte(inst.X) {
+										nqueue.Push(pc + 1)
                 }
-                nqueue.Push(pc + 1)
             case MATCH:
                 if tc == len(text) {
                     return true

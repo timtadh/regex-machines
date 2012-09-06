@@ -77,8 +77,7 @@ func TestLexerNoMatch(t *testing.T) {
 }
 
 func TestLexerThreeStrings(t *testing.T) {
-    //. (a|b)*cba?(c|b)bb
-    var text []byte = []byte{'s', 't', 'r', 'u', 'c', 't', ' ', '*'}
+    var text []byte = []byte{'s', 't', 'r', 'u', 'c', 't', ' ', ' ', '*'}
     program := make(inst.InstSlice, 30)
 
     program[0] = inst.New(inst.SPLIT, 2, 1)  // go to 1 or 2/3
