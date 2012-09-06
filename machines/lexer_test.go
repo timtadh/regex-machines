@@ -28,18 +28,18 @@ func TestLexerMatch(t *testing.T) {
     program[16] = inst.New(inst.MATCH, 0, 0)
 
     t.Log(string(text))
-		t.Log(len(text))
+    t.Log(len(text))
     t.Log(program)
-		success, matches := LexerEngine(program, text)
-		go func() {
-				for match := range matches {
-						t.Log(match)
-				}
-		}()
+    success, matches := LexerEngine(program, text)
+    go func() {
+        for match := range matches {
+            t.Log(match)
+        }
+    }()
 
-		if ok := <-success; !ok {
+    if ok := <-success; !ok {
         t.Error("program should have matched text but did not")
-		}
+    }
 }
 
 func TestLexerNoMatch(t *testing.T) {
@@ -62,27 +62,27 @@ func TestLexerNoMatch(t *testing.T) {
     program[13] = inst.New(inst.CHAR, 'b', 0)
     program[14] = inst.New(inst.MATCH, 0, 0)
 
-		t.Log("(a|b)*cba?(c|b)")
+    t.Log("(a|b)*cba?(c|b)")
     t.Log(string(text))
     t.Log(program)
-		success, matches := LexerEngine(program, text)
-		go func() {
-				for match := range matches {
-						t.Log(match)
-				}
-		}()
-		if ok := <-success; ok {
+    success, matches := LexerEngine(program, text)
+    go func() {
+        for match := range matches {
+            t.Log(match)
+        }
+    }()
+    if ok := <-success; ok {
         t.Error("program should not have matched text but did")
-		}
+    }
 }
 
 func TestLexerThreeStrings(t *testing.T) {
     //. (a|b)*cba?(c|b)bb
-		var text []byte = []byte{'s', 't', 'r', 'u', 'c', 't', ' ', '*'}
+    var text []byte = []byte{'s', 't', 'r', 'u', 'c', 't', ' ', '*'}
     program := make(inst.InstSlice, 30)
 
-    program[0] = inst.New(inst.SPLIT, 2, 1) // go to 1 or 2/3
-    program[1] = inst.New(inst.SPLIT, 9, 13)  // go to 2 or 3
+    program[0] = inst.New(inst.SPLIT, 2, 1)  // go to 1 or 2/3
+    program[1] = inst.New(inst.SPLIT, 9, 13) // go to 2 or 3
     program[2] = inst.New(inst.CHAR, 's', 0)
     program[3] = inst.New(inst.CHAR, 't', 0)
     program[4] = inst.New(inst.CHAR, 'r', 0)
@@ -98,16 +98,16 @@ func TestLexerThreeStrings(t *testing.T) {
     program[14] = inst.New(inst.MATCH, 0, 0)
 
     t.Log(string(text))
-		t.Log(len(text))
+    t.Log(len(text))
     t.Log(program)
-		success, matches := LexerEngine(program, text)
-		go func() {
-				for match := range matches {
-						t.Log(match)
-				}
-		}()
+    success, matches := LexerEngine(program, text)
+    go func() {
+        for match := range matches {
+            t.Log(match)
+        }
+    }()
 
-		if ok := <-success; !ok {
+    if ok := <-success; !ok {
         t.Error("program should have matched text but did not")
-		}
+    }
 }

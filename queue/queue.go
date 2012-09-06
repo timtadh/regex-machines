@@ -28,7 +28,7 @@ func (self *Queue) Pop() uint32 {
     e := self.list.Front()
     pc, _ := e.Value.(uint32)
     self.list.Remove(e)
-		delete(self.set, pc)
+    delete(self.set, pc)
     return pc
 }
 
